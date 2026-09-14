@@ -5,7 +5,7 @@ go 1.25.0
 replace github.com/wimwenigerkind/paginate => ../
 
 require (
-	github.com/gin-gonic/gin v1.12.0
+	github.com/gin-gonic/gin v1.11.0
 	github.com/wimwenigerkind/paginate v0.0.0-00010101000000-000000000000
 	gorm.io/driver/postgres v1.6.3
 	gorm.io/gorm v1.31.2
