@@ -1,3 +1,5 @@
+// The example is its own module so that the PostgreSQL driver it needs to run
+// stays out of the library's dependencies.
 module github.com/wimwenigerkind/paginate/example
 
 go 1.25.0
