@@ -1,0 +1,55 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        # The floor stated in go.mod, the current release, and stable so that
+        # the next Go release breaks CI before it breaks a consumer.
+        go: ["1.25", "1.27", "stable"]
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-go@v7
+        with:
+          go-version: ${{ matrix.go }}
+
+      - name: Check formatting
+        run: |
+          unformatted=$(gofmt -l .)
+          if [ -n "$unformatted" ]; then
+            echo "These files need gofmt:"
+            echo "$unformatted"
+            exit 1
+          fi
+
+      - name: Vet
+        run: go vet ./... && go vet -tags integration ./...
+
+      - name: Unit tests
+        run: go test -race -count=1 ./...
+
+      # Docker is available on ubuntu-latest, so testcontainers works here.
+      - name: Integration tests
+        run: go test -tags integration -race -count=1 -timeout 20m ./...
+
+      - name: Build the example
+        working-directory: example
+        run: go build ./... && go vet ./...
+
+  tidy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-go@v7
+        with:
+          go-version: "1.27"
+      - name: go.mod is tidy
+        run: |
+          go mod tidy
+          git diff --exit-code -- go.mod go.sum
