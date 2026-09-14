@@ -1,0 +1,22 @@
+{
+  "_comment": [
+    "Golden cursors, captured when the format was frozen. They must stay",
+    "decodable: clients hold cursors across deploys, so the wire format is",
+    "part of the public API. A change here is a change to that contract.",
+    "See PLAN.md section 7."
+  ],
+  "cursors": [
+    {
+      "name": "forward, created_at desc then id desc",
+      "cursor": "eyJ2IjoxLCJrIjoiS1FCYjBaRUwiLCJkIjoiZiIsImYiOnsiY3JlYXRlZF9hdCI6IjIwMjQtMDEtMDFUMTA6MDA6MDAuMTIzNDU2WiIsImlkIjo0NzExfX0",
+      "direction": "f",
+      "values": { "created_at": "2024-01-01T10:00:00.123456Z", "id": 4711 }
+    },
+    {
+      "name": "backward, same sort order",
+      "cursor": "eyJ2IjoxLCJrIjoiS1FCYjBaRUwiLCJkIjoiYiIsImYiOnsiY3JlYXRlZF9hdCI6IjIwMjQtMDEtMDFUMTA6MDA6MDAuMTIzNDU2WiIsImlkIjo0NzExfX0",
+      "direction": "b",
+      "values": { "created_at": "2024-01-01T10:00:00.123456Z", "id": 4711 }
+    }
+  ]
+}
