@@ -12,7 +12,7 @@ jobs:
       matrix:
         # The floor stated in go.mod, the current release, and stable so that
         # the next Go release breaks CI before it breaks a consumer.
-        go: ["1.25", "1.27", "stable"]
+        go: ["1.26", "1.27", "stable"]
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-go@v7
