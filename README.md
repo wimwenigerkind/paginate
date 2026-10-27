@@ -9,7 +9,7 @@ list-response contract.
 go get github.com/wimwenigerkind/paginate
 ```
 
-Go 1.25 or newer. Depends on gorm, plus gin in the `ginx` subpackage.
+Go 1.26 or newer. Depends on gorm, plus gin in the `ginx` subpackage.
 
 ## Use
 
